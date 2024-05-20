@@ -6,13 +6,16 @@ import "../Styles/CartPage.css"
 
 const CartPage = () => {
     const { Cart } = useContext(StoreContext);
+    useEffect(()=>{
+        console.log(Cart)
+    },[Cart])
     return (
         <>
             <NavigationBar />
-            <BuyTab Items={Cart.length} TotalAmount={10}/>
+            <BuyTab Items={Cart.length} TotalAmount={Math.round(Cart.reduce((a,b)=>b.ProductDiscounted?a+b.ProductPrice/2:a+b.ProductPrice,0))}/>
             <div className="CartPage">
                 {Cart && Cart.length > 0 ? (
-                    Cart.map((cartItem, index) => (
+                    Cart.map((cartItem) => (
                         <ProductCard
                             ProductImage={cartItem.ProductImage}
                             ProductTitle={cartItem.ProductTitle}
@@ -61,7 +64,7 @@ const BuyTab = (props) => {
             </div>
             <div className="BuyTabOptionsTab">
                 <h3>Total Amount:</h3>
-                <p>{props.TotalAmount}</p>
+                <p>Rs {props.TotalAmount}/-</p>
             </div>
             <div className="BuyTabOptionsTab">
                 <button className="BuyTabBtn">Buy</button>

@@ -92,16 +92,17 @@ const ProductCard = (props) => {
                             width:'auto',
                             // margin:'0.1em',
                             color:'red',
+                            overflowY:'auto',
                         }
                     }>{props.ProductDescription}</p>
                 )}
                 {Discounted ? (
                     <>
-                        <s style={{ textDecorationThickness: '0.125em'}}>Rs {ProductPrice}/-</s>
-                        <p style={{ color: 'red',}}>Rs {ProductPrice * 0.5}/-</p>
+                        <s style={{ textDecorationThickness: '0.125em',overflowY:'hidden'}}>Rs {Math.round(ProductPrice)}/-</s>
+                        <p style={{ color: 'red',overflowY:'hidden'}}>Rs {Math.round(ProductPrice * 0.5)}/-</p>
                     </>
                 ) : (
-                    <p>Rs {ProductPrice}/-</p>
+                    <p>Rs {Math.round(ProductPrice)}/-</p>
                 )}
                 {IsSelected && (
                     <div className="RatingTab">
