@@ -1,0 +1,44 @@
+.CartPage{
+    padding:1em;
+    background-color: white;
+    height:auto;
+    width:100vw;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    column-gap: 4em;
+    grid-template-columns: repeat(2,auto);
+    padding-bottom: 5em;
+}
+.BuyTabOptionsTab{
+    height:6em;
+    width: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4em;
+    border-radius: 1em;
+}
+.BuyTabOptionsTab h3,p{
+    padding:0.125em;
+    margin:0.125;
+}
+.BuyTabBtn{
+    border: none;
+    background-color: white;
+    outline: none;
+    padding:0.25em;
+    margin:0.25em;
+    height:auto;
+    width: 7em;
+    font-size: 1.1em;
+    border-radius: 2em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.BuyTabBtn:hover{
+    background-color: red;
+    color:white;
+}

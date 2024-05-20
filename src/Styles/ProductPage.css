@@ -1,0 +1,9 @@
+.ProductsPage{
+    height:auto;
+    width:100vw;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    column-gap: 4em;
+    grid-template-columns: repeat(2,auto);
+}
