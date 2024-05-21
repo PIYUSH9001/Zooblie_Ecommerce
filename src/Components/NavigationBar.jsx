@@ -89,13 +89,13 @@ const NavigationBar = () => {
                 <button className="SearchBtn"><img src={SearchIcon} alt="" /></button>
             </li> */}
             {/* Wishlist */}
-            <li className="NavOptions">
+            {/* <li className="NavOptions">
                 <button className="NavButtons"
                     onMouseOver={MakeBtnOnHover}
                     onMouseOut={MakeBtnOnMouseOver}>
                     Wishlist
                 </button>
-            </li>
+            </li> */}
             {/* Cart Tab */}
             <li className="NavOptions"><img src={ThailaIcon} alt=""
                 style={

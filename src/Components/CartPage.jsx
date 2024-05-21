@@ -42,6 +42,7 @@ const CartPage = () => {
 };
 
 const BuyTab = (props) => {
+    const {Cart,setCart} = useContext(StoreContext);
     return (
         <div style={{
             height: 'auto',
@@ -67,8 +68,18 @@ const BuyTab = (props) => {
                 <p>Rs {props.TotalAmount}/-</p>
             </div>
             <div className="BuyTabOptionsTab">
-                <button className="BuyTabBtn">Buy</button>
-                <button className="BuyTabBtn">Remove All</button>
+                <button className="BuyTabBtn" onClick={()=>{
+                    if(Cart.length === 0){
+                        setCart([]);
+                        alert("Cart is empty!");
+                    }
+                    else{
+                        alert("Items ordered.\nThank You!");
+                    }
+                }}>Buy</button>
+                <button className="BuyTabBtn" onClick={()=>{
+                    setCart([]);
+                }}>Remove All</button>
             </div>
         </div>
     )
