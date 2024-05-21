@@ -5,8 +5,10 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Banner1 from "../Banners/BannerImage1.jpg"
 import Banner2 from "../Banners/BannerImage2.jpg"
+import { useNavigate } from "react-router";
 
 const BannerTab = () => {
+    const navigate = useNavigate();
     const settings = {
         dots:false,
         infinite:true,
