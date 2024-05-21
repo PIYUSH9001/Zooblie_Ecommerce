@@ -23,12 +23,18 @@ const BannerTab = () => {
     }
     return (
         <Slider {...settings}>
-            <div><a href={encodeURI("/products/category/jewelery")}>
+            <div><a href={encodeURI("/products/category/jewelery")} onClick={(event)=>{
+                event.preventDefault();
+                navigate(encodeURI("/products/category/jewelery"));
+            }}>
             <img src={Banner1} alt="" className="Banner"/>
             </a>
             </div>
             <div>
-                <a href={encodeURI("/products/category/men's clothing")}>
+                <a href={encodeURI("/products/category/men's clothing")} onClick={(event)=>{
+                    event.preventDefault();
+                    navigate(encodeURI("/products/category/men's clothing"));
+                }}>
             <img src={Banner2} alt="" className="Banner"/>
                 </a>
             </div>
