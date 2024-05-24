@@ -2,8 +2,9 @@ import React, { useContext, useState } from "react";
 import "../Styles/Product.css";
 import { StoreContext } from "../Context/context";
 import ReactRatingStars from 'react-rating-stars-component';
-
+import {IsMobileScreen} from './HomePage';
 const ProductCard = (props) => {
+    const MobileScreen = IsMobileScreen();
     const { Cart, setCart, isInCart } = useContext(StoreContext);
     const { ProductImage, ProductTitle, ProductPrice, Discounted ,ProductDescription,ProductRating} = props;
     const [IsSelected, setIsSelected] = useState(false);
@@ -69,12 +70,13 @@ const ProductCard = (props) => {
                     }
                 }}
                 style={{
-                    height: IsSelected ? '90vh' : '25em',
-                    width: IsSelected ? '80vw' : '20em',
+                    height: IsSelected ? '90vh' : MobileScreen?'15em':'25em',
+                    width: IsSelected ? MobileScreen?'95vw':'80vw' :MobileScreen?'10em':'20em',
+                    margin:MobileScreen?'none':'1em',
                     position: IsSelected ? 'fixed' : 'static',
                     top: IsSelected ? '45%' : 'auto',
                     left: IsSelected ? '50%' : 'auto',
-                    transform: IsSelected ? 'translate(-50%, -50%)' : 'none',
+                    transform: IsSelected ? MobileScreen?'translate(-52%, -45%)':'translate(-50%, -50%)' : 'none',
                     alignSelf: 'center',
                     justifySelf: 'center',
                     zIndex: IsSelected ? 1000 : 'auto',
@@ -126,9 +128,12 @@ const ProductCard = (props) => {
                         onMouseOver={(event) => handleMouseOver(event, addedToCart)}
                         onMouseOut={(event) => handleMouseOut(event, addedToCart)}
                         style={{
-                            border: addedToCart ? '2px solid red' : 'none',
-                            backgroundColor: addedToCart ? 'white' : 'black',
-                            color: addedToCart ? 'red' : 'white',
+                            border: addedToCart && !MobileScreen? '2px solid red' : 'none',
+                            backgroundColor: addedToCart ? MobileScreen?'red':'white' : 'black',
+                            color: addedToCart ? MobileScreen?'white':'red' : 'white',
+                            width: MobileScreen?'100%':'50%',
+                            fontSize: MobileScreen? IsSelected?'1.5em':'0.75em':'0.8em',
+                            
                         }}
                         onClick={handleCartButtonClick}
                     >

@@ -4,7 +4,7 @@
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
-    
+    -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
 }
 
 *:focus {
@@ -149,6 +149,13 @@
     width:100%;
 }
 
+.LoadingArea{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .LoadingTab {
     padding: 2em;
     height: 100vh;
@@ -163,6 +170,7 @@
     padding: 0.25em;
     margin: 0.5em;
 }
+
 
 .loader {
     width: 2em;
@@ -183,4 +191,16 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+@media screen and (min-width:320px) and (max-width:500px) {
+    .Banner{
+        height:30vh;
+    }
+    .DiscountItems{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-gap: 0;
+    }
+    
 }

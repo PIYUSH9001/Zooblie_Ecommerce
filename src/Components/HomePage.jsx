@@ -12,14 +12,24 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+export function IsMobileScreen(){
+    if(window.innerWidth<=500){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 const HomePage = () => {
     const { Data, FetchData, setData,} = useContext(StoreContext);
     const navigate = useNavigate();
+    const MobileScreen = IsMobileScreen();
     useEffect(() => {
         let RandomProduct;
         FetchData("products");
         console.log(Data)
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < (IsMobileScreen()?4:3); i++) {
             RandomProduct = getRandomInt(0, 19);
             if (i === 0) {
                 DiscountProducts.push(RandomProduct);
@@ -75,17 +85,19 @@ const HomePage = () => {
                             }
                         </>
                     ) :(
-                        <>
-                        <p style={
-                            {
-                                padding:'0.25em',
-                                margin:'0.25em',
-                                fontWeight:'bold'
-                        
-                            }
-                            }>Loading</p>
+                        <div className="LoadingArea">
+                        {window.inner}
+                        {!MobileScreen?(
+                            <p style={
+                                {
+                                    padding:'0.4em',
+                                    margin:'0.5em',
+                                    fontWeight:'bold',
+                                }
+                                }>Loading</p>
+                        ):null}
                         <span className="loader"></span>
-                        </>
+                        </div>
                     )}
                 </div>
             </div>
