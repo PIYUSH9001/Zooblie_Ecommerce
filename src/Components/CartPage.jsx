@@ -2,9 +2,10 @@ import React, { useContext, useEffect } from "react";
 import { StoreContext } from "../Context/context";
 import ProductCard from "./ProductCard";
 import NavigationBar from "./NavigationBar";
-import "../Styles/CartPage.css"
-
+import "../Styles/CartPage.css";
+import {IsMobileScreen} from './HomePage';
 const CartPage = () => {
+    const MobileScreen = IsMobileScreen();
     const { Cart } = useContext(StoreContext);
     useEffect(()=>{
         console.log(Cart)
@@ -44,21 +45,7 @@ const CartPage = () => {
 const BuyTab = (props) => {
     const {Cart,setCart} = useContext(StoreContext);
     return (
-        <div style={{
-            height: 'auto',
-            width: '95vw',
-            display: 'flex',
-            backgroundColor: 'lightgray',
-            // border: '1px solid black',
-            position: 'fixed',
-            padding: '1em',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            bottom: '1%',
-            alignItems: 'center',
-            justifyContent: 'space-around',
-            borderRadius: '1em'
-        }}>
+        <div className="CartOptionsArea">
             <div className="BuyTabOptionsTab">
                 <h3>Total Items:</h3>
                 <p>{props.Items}</p>

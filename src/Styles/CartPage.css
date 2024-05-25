@@ -42,3 +42,56 @@
     background-color: red;
     color:white;
 }
+.CartOptionsArea{
+    /*      height:'auto',
+            width: '95vw',
+            display: 'flex',
+            backgroundColor: 'lightgray',
+            // border: '1px solid black',
+            position: 'fixed',
+            padding: '1em',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            bottom: '1%',
+            alignItems: 'center',
+            justifyContent: 'space-around',
+            borderRadius: '1em */
+    height:auto;
+    width: 95vw;
+    display: flex;
+    background-color: lightgray;
+    border: 1px solid black;
+    position: fixed;
+    padding:1em;
+    left:50%;
+    transform: translateX(-50%);
+    bottom:1%;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 1em;
+}
+
+@media screen and (min-width:320px) and (max-width:750px){
+    .CartPage{
+        column-gap: 0;
+    }
+    .CartOptionsArea{
+        height:12%;
+        padding: 0.25em;
+    }
+    .BuyTabOptionsTab{
+        flex-direction: row;
+        font-size: 0.79em;
+        height:75%;
+        width: auto;
+        margin:0.125em;
+    }
+    .BuyTabBtn{
+        margin: 0.125em;
+        padding:0.125em;
+        height:95%;
+        font-size: 1em;
+        font-weight: bold;
+        border: 0.25px solid red;
+    }
+}

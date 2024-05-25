@@ -13,7 +13,7 @@ function getRandomInt(min, max) {
 }
 
 export function IsMobileScreen(){
-    if(window.innerWidth<=500){
+    if(window.innerWidth<=750){
         return true;
     }
     else{

@@ -8,7 +8,7 @@
     grid-template-columns: repeat(2,auto);
 }
 
-@media screen and (min-width:320px) and (max-width:500px){
+@media screen and (min-width:320px) and (max-width:750px){
     .ProductsPage{
         column-gap: 1em;
         row-gap: 1em;

@@ -99,7 +99,7 @@
     background-color: black;
 }
 
-@media screen and (min-width:320px) and (max-width:500px) {
+@media screen and (min-width:320px) and (max-width:750px) {
     .ProductCard{
         border:1px solid black;
     }

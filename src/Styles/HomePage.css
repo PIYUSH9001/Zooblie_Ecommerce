@@ -193,7 +193,7 @@
     }
 }
 
-@media screen and (min-width:320px) and (max-width:500px) {
+@media screen and (min-width:320px) and (max-width:750px) {
     .Banner{
         height:30vh;
     }
