@@ -2,28 +2,27 @@ import React, { useContext, useState } from "react";
 import "../Styles/Product.css";
 import { StoreContext } from "../Context/context";
 import ReactRatingStars from 'react-rating-stars-component';
-import {IsMobileScreen} from './HomePage';
-const ProductCard = (props) => {
+import { IsMobileScreen } from './HomePage';
+
+const ProductCard = ({ ProductImage, ProductTitle, ProductPrice, Discounted, ProductDescription, ProductRating }) => {
     const MobileScreen = IsMobileScreen();
     const { Cart, setCart, isInCart } = useContext(StoreContext);
-    const { ProductImage, ProductTitle, ProductPrice, Discounted ,ProductDescription,ProductRating} = props;
     const [IsSelected, setIsSelected] = useState(false);
-    const AvgRating = props.ProductRating;
-    const CloseBtn = () => {
-        return (
-            <button
-                onClick={(event) => {
-                    event.stopPropagation();
-                    setIsSelected(false);
-                }}
-                className="close-btn"
-                id="CloseBtn"
-            >
-                X
-            </button>
-        );
-    };
-    const handleMouseOver = (event, isCartBtn) => {
+
+    const CloseBtn = () => (
+        <button
+            onClick={(event) => {
+                event.stopPropagation();
+                setIsSelected(false);
+            }}
+            className="close-btn"
+            id="CloseBtn"
+        >
+            X
+        </button>
+    );
+
+    const handleMouseOver = (event) => {
         event.target.style.backgroundColor = "red";
         event.target.style.color = "white";
     };
@@ -58,7 +57,9 @@ const ProductCard = (props) => {
             addToCart();
         }
     };
+
     const addedToCart = isInCart(ProductTitle);
+
     return (
         <>
             {IsSelected && <div className="overlay" onClick={() => setIsSelected(false)}></div>}
@@ -70,13 +71,13 @@ const ProductCard = (props) => {
                     }
                 }}
                 style={{
-                    height: IsSelected ? '90vh' : MobileScreen?'15em':'25em',
-                    width: IsSelected ? MobileScreen?'95vw':'80vw' :MobileScreen?'10em':'20em',
-                    margin:MobileScreen?'none':'1em',
+                    height: IsSelected ? '90vh' : MobileScreen ? '15em' : '25em',
+                    width: IsSelected ? MobileScreen ? '95vw' : '80vw' : MobileScreen ? '10em' : '20em',
+                    margin: MobileScreen ? 'none' : '1em',
                     position: IsSelected ? 'fixed' : 'static',
                     top: IsSelected ? '45%' : 'auto',
                     left: IsSelected ? '50%' : 'auto',
-                    transform: IsSelected ? MobileScreen?'translate(-52%, -45%)':'translate(-50%, -50%)' : 'none',
+                    transform: IsSelected ? MobileScreen ? 'translate(-52%, -45%)' : 'translate(-50%, -50%)' : 'none',
                     alignSelf: 'center',
                     justifySelf: 'center',
                     zIndex: IsSelected ? 1000 : 'auto',
@@ -86,54 +87,48 @@ const ProductCard = (props) => {
                 <img src={ProductImage} alt={ProductTitle} />
                 <h3>{ProductTitle}</h3>
                 {IsSelected && (
-                    <p style={
-                        {
-                            fontWeight:'lighter',
-                            fontSize:'1.15em',
-                            height:'2.5em',
-                            width:'auto',
-                            // margin:'0.1em',
-                            color:'red',
-                            overflowY:'auto',
-                        }
-                    }>{props.ProductDescription}</p>
+                    <p style={{
+                        fontWeight: 'lighter',
+                        fontSize: '1.15em',
+                        height: '2.5em',
+                        width: 'auto',
+                        color: 'red',
+                        overflowY: 'auto',
+                    }}>{ProductDescription}</p>
                 )}
                 {Discounted ? (
                     <>
-                        <s style={{ textDecorationThickness: '0.125em',overflowY:'hidden'}}>Rs {Math.round(ProductPrice)}/-</s>
-                        <p style={{ color: 'red',overflowY:'hidden'}}>Rs {Math.round(ProductPrice * 0.5)}/-</p>
+                        <s style={{ textDecorationThickness: '0.125em' }}>Rs {Math.round(ProductPrice)}/-</s>
+                        <p style={{ color: 'red' }}>Rs {Math.round(ProductPrice * 0.5)}/-</p>
                     </>
                 ) : (
                     <p>Rs {Math.round(ProductPrice)}/-</p>
                 )}
                 {IsSelected && (
                     <div className="RatingTab">
-                        <p style={
-                            {
-                             fontWeight:'lighter',
-                             position:'relative',
-                            top:'5%',
-                                padding:'0.125em',
-                                margin:'0.125em'
-                            }
-                        }>({AvgRating})
+                        <p style={{
+                            fontWeight: 'lighter',
+                            position: 'relative',
+                            top: '5%',
+                            padding: '0.125em',
+                            margin: '0.125em'
+                        }}>({ProductRating})
                         </p>
-                        <RatingComponent rating={AvgRating}/>
-
+                        <RatingComponent rating={ProductRating} />
                     </div>
                 )}
                 <div className="ButtonsTab">
                     <button
                         className="ProductBtn"
-                        onMouseOver={(event) => handleMouseOver(event, addedToCart)}
+                        onMouseOver={(event) => handleMouseOver(event)}
                         onMouseOut={(event) => handleMouseOut(event, addedToCart)}
                         style={{
-                            border: addedToCart && !MobileScreen? '2px solid red' : 'none',
-                            backgroundColor: addedToCart ? MobileScreen?'red':'white' : 'black',
-                            color: addedToCart ? MobileScreen?'white':'red' : 'white',
-                            width: MobileScreen?'100%':'50%',
-                            fontSize: MobileScreen? IsSelected?'1.5em':'0.75em':'0.8em',
-                            
+                            border: addedToCart && !MobileScreen ? '1px solid red' : 'none',
+                            backgroundColor: addedToCart ? MobileScreen ? 'red' : 'white' : 'black',
+                            color: addedToCart ? MobileScreen ? 'white' : 'red' : 'white',
+                            width: MobileScreen ? '100%' : '50%',
+                            fontSize: MobileScreen ? IsSelected ? '1.5em' : '0.75em' : '0.8em',
+                            height: IsSelected && MobileScreen ? '50%' : '80%',
                         }}
                         onClick={handleCartButtonClick}
                     >
@@ -145,18 +140,17 @@ const ProductCard = (props) => {
     );
 };
 
-const RatingComponent = ({rating})=>{
-    return(
-        <ReactRatingStars
+const RatingComponent = ({ rating }) => (
+    <ReactRatingStars
         count={5}
         value={rating}
         size={30}
         color="lightgray"
-        activeColor="green" 
+        activeColor="green"
         edit={false}
         isHalf={true}
-        />
-    )
-}
+    />
+);
 
 export default ProductCard;
+

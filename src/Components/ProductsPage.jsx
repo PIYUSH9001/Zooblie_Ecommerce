@@ -16,7 +16,7 @@ const ProductPage = () => {
         else {
             FetchData(`products/category/${params.category}`);
         }
-        console.log(Data);
+        // console.log(Data);
         return ()=>{
             setData(null);
         }

@@ -202,5 +202,11 @@
         grid-template-columns: repeat(2,1fr);
         grid-gap: 0;
     }
-    
+    .CategoriesTab{
+        height: auto;
+        width: 50%;
+        left:26%;
+        align-self: center;
+        justify-self: center;
+    }
 }
