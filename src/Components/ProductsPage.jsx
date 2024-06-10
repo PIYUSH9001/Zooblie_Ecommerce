@@ -18,14 +18,14 @@ const ProductPage = () => {
             FetchData(`products/category/${params.category}`);
         }
         // console.log(Data);
-        return ()=>{
+        return () => {
             setData(null);
         }
     }, [params.category])
     return (
         <div>
             <NavigationBar />
-            <ProductPageHeading PageItems={Data?Data.length:'0'}/>
+            <ProductPageHeading PageItems={Data ? Data.length : '0'} />
             <div className="ProductsPage">
                 {Data ? (
                     Data.map((product) => (
@@ -49,24 +49,25 @@ const ProductPage = () => {
     );
 }
 
-const ProductPageHeading = (props)=>{
-    const PageTitle = window.location.href.split('/',[2]);
-    return(
+const ProductPageHeading = (props) => {
+    let prevStr = "https://zooblie-e-commerce.onrender.com/products/category/electronics";
+    let targetStr = "https://zooblie-e-commerce.onrender.com/products/category/"
+    return (
         <div>
             <h3
-            style={
-                {
-                    margin:'0.25em',
-                    padding:'0.25em',
-                    fontSize:'1.4em',
-                    textAlign:'center',
-                }
-            }>
-                {capitalizeFirstLetter(decodeURI(PageTitle))} ({props.PageItems})
-                </h3>
+                style={
+                    {
+                        margin: '0.25em',
+                        padding: '0.25em',
+                        fontSize: '1.4em',
+                        textAlign: 'center',
+                    }
+                }>
+                {capitalizeFirstLetter(decodeURI(cutStringAfterSubstring(targetStr,prevStr)))} ({props.PageItems})
+            </h3>
             <hr
                 style={{
-                    color:'grey',
+                    color: 'grey',
                     height: 1,
                 }}
             />
@@ -76,6 +77,12 @@ const ProductPageHeading = (props)=>{
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
+}
+function cutStringAfterSubstring(mainString, substring) {
+    let index = mainString.indexOf(substring);
+    if (index === -1) {
+        return mainString; // Return the original string if the substring is not found
+    }
+    return mainString.slice(index + substring.length);
+}
 export default ProductPage;
