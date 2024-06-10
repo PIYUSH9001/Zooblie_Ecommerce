@@ -50,7 +50,7 @@ const ProductPage = () => {
 }
 
 const ProductPageHeading = (props)=>{
-    const PageTitle = window.location.href;
+    const PageTitle = window.location.href.split('/',[2]);
     return(
         <div>
             <h3
@@ -62,7 +62,7 @@ const ProductPageHeading = (props)=>{
                     textAlign:'center',
                 }
             }>
-                {capitalizeFirstLetter(decodeURI(PageTitle.substring(40)))} ({props.PageItems})
+                {capitalizeFirstLetter(decodeURI(PageTitle))} ({props.PageItems})
                 </h3>
             <hr
                 style={{
