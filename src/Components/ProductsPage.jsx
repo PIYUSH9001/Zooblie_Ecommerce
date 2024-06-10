@@ -50,7 +50,7 @@ const ProductPage = () => {
 }
 
 const ProductPageHeading = (props) => {
-    let prevStr = "https://zooblie-e-commerce.onrender.com/products/category/electronics";
+    let prevStr = window.location.href;
     let targetStr = "https://zooblie-e-commerce.onrender.com/products/category/"
     return (
         <div>
@@ -63,7 +63,7 @@ const ProductPageHeading = (props) => {
                         textAlign: 'center',
                     }
                 }>
-                {capitalizeFirstLetter(decodeURI(cutStringAfterSubstring(targetStr,prevStr)))} ({props.PageItems})
+                {capitalizeFirstLetter(decodeURI(cutStringAfterSubstring(prevStr,targetStr)))} ({props.PageItems})
             </h3>
             <hr
                 style={{
