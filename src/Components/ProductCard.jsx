@@ -94,11 +94,12 @@ const ProductCard = ({ ProductImage, ProductTitle, ProductPrice, Discounted, Pro
                         width: 'auto',
                         color: 'red',
                         overflowY: 'auto',
+                        cursor:'text',
                     }}>{ProductDescription}</p>
                 )}
                 {Discounted ? (
                     <>
-                        <s style={{ textDecorationThickness: '0.125em' }}>Rs {Math.round(ProductPrice)}/-</s>
+                        <s style={{ textDecorationThickness: '0.125em'}}>Rs {Math.round(ProductPrice)}/-</s>
                         <p style={{ color: 'red' }}>Rs {Math.round(ProductPrice * 0.5)}/-</p>
                     </>
                 ) : (

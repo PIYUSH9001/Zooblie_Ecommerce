@@ -36,6 +36,7 @@
     width:100%;
     word-wrap: break-word;
     font-size: 1.35em;
+    cursor: text;
 }
 .ProductCard img{
     cursor: pointer;

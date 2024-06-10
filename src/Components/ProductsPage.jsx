@@ -4,6 +4,7 @@ import ProductCard from "./ProductCard";
 import "../Styles/ProductPage.css"
 import { useParams } from "react-router";
 import NavigationBar from "./NavigationBar";
+import { IsMobileScreen } from "./HomePage";
 
 const ProductPage = () => {
     const { Data, FetchData, setData, } = useContext(StoreContext);
@@ -24,6 +25,7 @@ const ProductPage = () => {
     return (
         <div>
             <NavigationBar />
+            <ProductPageHeading PageItems={Data?Data.length:'0'}/>
             <div className="ProductsPage">
                 {Data ? (
                     Data.map((product) => (
@@ -46,4 +48,34 @@ const ProductPage = () => {
         </div>
     );
 }
+
+const ProductPageHeading = (props)=>{
+    const PageTitle = window.location.href;
+    return(
+        <div>
+            <h3
+            style={
+                {
+                    margin:'0.25em',
+                    padding:'0.25em',
+                    fontSize:'1.4em',
+                    textAlign:'center',
+                }
+            }>
+                {capitalizeFirstLetter(decodeURI(PageTitle.substring(40)))} ({props.PageItems})
+                </h3>
+            <hr
+                style={{
+                    color:'grey',
+                    height: 1,
+                }}
+            />
+        </div>
+    )
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
 export default ProductPage;
