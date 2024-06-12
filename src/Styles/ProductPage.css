@@ -8,6 +8,27 @@
     grid-template-columns: repeat(2,auto);
 }
 
+#SortComponent{
+    background-color: red;
+    color: white;
+    padding:0.30em;
+    margin:0.25em;
+    font-size: 0.95em;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 2em;
+}
+
+.SortOptions{
+    background-color: white;
+    color:red;
+    text-align: center;
+    color:red;
+}
+
+
+
 @media screen and (min-width:320px) and (max-width:750px){
     .ProductsPage{
         column-gap: 1em;

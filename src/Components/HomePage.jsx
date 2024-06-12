@@ -28,7 +28,7 @@ const HomePage = () => {
     useEffect(() => {
         let RandomProduct;
         FetchData("products");
-        console.log(Data)
+        // console.log(Data);
         for (let i = 0; i < (IsMobileScreen()?4:3); i++) {
             RandomProduct = getRandomInt(0, 19);
             if (i === 0) {
