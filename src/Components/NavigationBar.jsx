@@ -31,8 +31,8 @@ const NavigationBar = () => {
             <li className="NavOptions" >
                 <button
                     onClick={() => {
-                        // window.location.href = ("/")
-                        navigate("/");
+                        window.location.href = ("/")
+                        // navigate("/");
                     }}
                     className="NavButtons"
                     onMouseOver={MakeBtnOnHover}

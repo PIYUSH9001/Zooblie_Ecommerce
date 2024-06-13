@@ -94,18 +94,24 @@ const ProductCard = ({ ProductImage, ProductTitle, ProductPrice, Discounted, Pro
                         width: 'auto',
                         color: 'red',
                         overflowY: 'auto',
-                        cursor:'text',
+                        cursor: 'text',
                     }}>{ProductDescription}</p>
                 )}
                 {Discounted ? (
                     <>
-                        <s style={{ textDecorationThickness: '0.125em'}}>Rs {Math.round(ProductPrice)}/-</s>
-                        <p style={{ color: 'red' }}>Rs {Math.round(ProductPrice * 0.5)}/-</p>
+                        <s style={
+                            {
+                                textDecorationThickness: '0.125em',
+                                overflow:'hidden', 
+                            }
+                        }>Rs {Math.round(ProductPrice)
+                            }/-</s>
+                        <p style={{ color: 'red' ,overflow:'hidden'}}>Rs {Math.round(ProductPrice * 0.5)}/-</p>
                     </>
                 ) : (
                     <p>Rs {Math.round(ProductPrice)}/-</p>
                 )}
-                {IsSelected && (
+                {/* {IsSelected && ( */}
                     <div className="RatingTab">
                         <p style={{
                             fontWeight: 'lighter',
@@ -115,9 +121,9 @@ const ProductCard = ({ ProductImage, ProductTitle, ProductPrice, Discounted, Pro
                             margin: '0.125em'
                         }}>({ProductRating})
                         </p>
-                        <RatingComponent rating={ProductRating} />
+                        <RatingComponent rating={ProductRating}/>
                     </div>
-                )}
+                {/* )} */}
                 <div className="ButtonsTab">
                     <button
                         className="ProductBtn"
@@ -145,7 +151,7 @@ const RatingComponent = ({ rating }) => (
     <ReactRatingStars
         count={5}
         value={rating}
-        size={30}
+        size={IsMobileScreen?25:30}
         color="lightgray"
         activeColor="green"
         edit={false}

@@ -11,6 +11,7 @@
     transition: 0.3s;
     height:25rem;
     width:20rem;  
+    overflow: hidden;
 }
 .overlay {
     position: fixed;
@@ -49,7 +50,9 @@
 }
 .ProductCard p{
     font-weight: bold;
+    margin:0.10em;
     margin-bottom: 0.5em;
+    padding:0.10em;
 }
 .ButtonsTab{
     height:10%;
@@ -60,7 +63,7 @@
 }
 .RatingTab{
     position: relative;
-    /* bottom: 2%; */
+    bottom: 2%;
     user-select: none;
     padding:0.125em;
     display: flex;
@@ -112,6 +115,9 @@
     }
     .ButtonsTab{
         height:20%;
+    }
+    .RatingTab{
+        bottom: 1%;
     }
     /* .ProductBtn{
         height:80%;

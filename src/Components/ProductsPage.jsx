@@ -165,7 +165,7 @@ const sortData = (Data, SortType) => {
             return sortedData;
         case 'SBR':
             sortedData = [...Data].sort((a, b) => {
-                if (a.rating.rate > b.rating.rate) {
+                if (a.rating.rate > b.rating) {
                     return -1;
                 }
                 if (a.rating.rate < b.rating.rate) {
