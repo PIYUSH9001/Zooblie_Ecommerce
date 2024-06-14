@@ -22,6 +22,7 @@ const ProductPage = () => {
                             padding: '0.25em',
                             fontSize: '1.4em',
                             textAlign: 'center',
+                            display:'inline',
                         }
                     }>
                     {capitalizeFirstLetter(decodeURI(cutStringAfterSubstring(prevStr, targetStr)))} ({props.PageItems})
@@ -40,7 +41,6 @@ const ProductPage = () => {
         return (
             <select name="SortType" id="SortComponent" onChange={(event) => {
                 let ClickedOption = event.target.value;
-                console.log(ClickedOption)
                 switch (event.target.value) {
                     case "Asc":
                         Data ? setData(sortData(Data, ClickedOption)) : console.log('error');
@@ -77,7 +77,6 @@ const ProductPage = () => {
         else {
             FetchData(`products/category/${params.category}`);
         }
-
         return () => {
             setData(null);
         }
@@ -120,62 +119,26 @@ const sortData = (Data, SortType) => {
     let sortedData;
     switch (SortType) {
         case 'Asc':
-            sortedData = [...Data].sort((a, b) => {
-                if (a.title[0] < b.title[0]) {
-                    return -1;
-                }
-                if (a.title[0] > b.title[0]) {
-                    return 1;
-                }
-                return 0;
-            });
-            return sortedData;
+            sortedData = [...Data].sort((a, b) => a.title.localeCompare(b.title));
+            break;
         case 'Desc':
-            sortedData = [...Data].sort((a, b) => {
-                if (a.title[0] > b.title[0]) {
-                    return -1;
-                }
-                if (a.title[0] < b.title[0]) {
-                    return 1;
-                }
-                return 0;
-            });
-            return sortedData;
+            sortedData = [...Data].sort((a, b) => b.title.localeCompare(a.title));
+            break;
         case 'LTH':
-            sortedData = [...Data].sort((a, b) => {
-                if (a.price < b.price) {
-                    return -1;
-                }
-                if (a.price > b.price) {
-                    return 1;
-                }
-                return 0;
-            });
-            return sortedData;
+            sortedData = [...Data].sort((a, b) => a.price - b.price);
+            break;
         case 'HTL':
-            sortedData = [...Data].sort((a, b) => {
-                if (a.price > b.price) {
-                    return -1;
-                }
-                if (a.price < b.price) {
-                    return 1;
-                }
-                return 0;
-            });
-            return sortedData;
+            sortedData = [...Data].sort((a, b) => b.price - a.price);
+            break;
         case 'SBR':
-            sortedData = [...Data].sort((a, b) => {
-                if (a.rating.rate > b.rating) {
-                    return -1;
-                }
-                if (a.rating.rate < b.rating.rate) {
-                    return 1;
-                }
-                return 0;
-            });
-            return sortedData;
+            sortedData = [...Data].sort((a, b) => parseFloat(b.rating.rate) - parseFloat(a.rating.rate));
+            break;
+        default:
+            sortedData = Data;
     }
-}
+    return sortedData;
+};
+
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

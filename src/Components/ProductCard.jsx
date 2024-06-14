@@ -8,7 +8,17 @@ const ProductCard = ({ ProductImage, ProductTitle, ProductPrice, Discounted, Pro
     const MobileScreen = IsMobileScreen();
     const { Cart, setCart, isInCart } = useContext(StoreContext);
     const [IsSelected, setIsSelected] = useState(false);
-
+    const RatingComponent = () => (
+        <ReactRatingStars
+            count={5}
+            value={ProductRating}
+            size={IsMobileScreen?17.5:30}
+            color="lightgray"
+            activeColor="red"
+            edit={false}
+            isHalf={true}
+        />
+    );
     const CloseBtn = () => (
         <button
             onClick={(event) => {
@@ -121,7 +131,7 @@ const ProductCard = ({ ProductImage, ProductTitle, ProductPrice, Discounted, Pro
                             margin: '0.125em'
                         }}>({ProductRating})
                         </p>
-                        <RatingComponent rating={ProductRating}/>
+                        <RatingComponent/>
                     </div>
                 {/* )} */}
                 <div className="ButtonsTab">
@@ -147,17 +157,7 @@ const ProductCard = ({ ProductImage, ProductTitle, ProductPrice, Discounted, Pro
     );
 };
 
-const RatingComponent = ({ rating }) => (
-    <ReactRatingStars
-        count={5}
-        value={rating}
-        size={IsMobileScreen?25:30}
-        color="lightgray"
-        activeColor="green"
-        edit={false}
-        isHalf={true}
-    />
-);
+
 
 export default ProductCard;
 
