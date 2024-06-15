@@ -11,7 +11,7 @@
     transition: 0.3s;
     height:25rem;
     width:20rem;  
-    overflow: hidden;
+    overflow:hidden;
 }
 .overlay {
     position: fixed;
@@ -53,6 +53,7 @@
     margin:0.10em;
     margin-bottom: 0.5em;
     padding:0.10em;
+    overflow: hidden;
 }
 .ButtonsTab{
     height:10%;

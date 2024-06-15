@@ -1,23 +1,23 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { StoreContext } from "../Context/context";
 import ProductCard from "./ProductCard";
 import NavigationBar from "./NavigationBar";
 import "../Styles/CartPage.css";
-import {IsMobileScreen} from './HomePage';
+import { IsMobileScreen } from './HomePage';
+
 const CartPage = () => {
     const MobileScreen = IsMobileScreen();
     const { Cart } = useContext(StoreContext);
-    useEffect(()=>{
-        console.log(Cart)
-    },[Cart])
+
     return (
         <>
             <NavigationBar />
-            <BuyTab Items={Cart.length} TotalAmount={Math.round(Cart.reduce((a,b)=>b.ProductDiscounted?a+b.ProductPrice/2:a+b.ProductPrice,0))}/>
+            <BuyTab items={Cart.length} totalAmount={Math.round(Cart.reduce((a, b) => b.ProductDiscounted ? a + b.ProductPrice / 2 : a + b.ProductPrice, 0))} />
             <div className="CartPage">
                 {Cart && Cart.length > 0 ? (
                     Cart.map((cartItem) => (
                         <ProductCard
+                            key={cartItem.ProductId} // Assuming ProductId is unique
                             ProductImage={cartItem.ProductImage}
                             ProductTitle={cartItem.ProductTitle}
                             ProductPrice={cartItem.ProductPrice}
@@ -28,13 +28,8 @@ const CartPage = () => {
                         />
                     ))
                 ) : (
-                    <div>
-                        <h3 style={
-                            {
-                                fontWeight: 'bold',
-                                fontSize: '1.5em',
-                            }
-                        }>Cart is empty</h3>
+                    <div className="EmptyCartMessage">
+                        <h3>Cart is empty</h3>
                     </div>
                 )}
             </div>
@@ -42,34 +37,38 @@ const CartPage = () => {
     );
 };
 
-const BuyTab = (props) => {
-    const {Cart,setCart} = useContext(StoreContext);
+const BuyTab = ({ items, totalAmount }) => {
+    const { Cart, setCart } = useContext(StoreContext);
+
+    const handleBuyClick = () => {
+        if (Cart.length === 0) {
+            setCart([]);
+            alert("Cart is empty!");
+        } else {
+            alert("Items ordered.\nThank You!");
+        }
+    };
+
+    const handleRemoveAllClick = () => {
+        setCart([]);
+    };
+
     return (
         <div className="CartOptionsArea">
             <div className="BuyTabOptionsTab">
                 <h3>Total Items:</h3>
-                <p>{props.Items}</p>
+                <p>{items}</p>
             </div>
             <div className="BuyTabOptionsTab">
                 <h3>Total Amount:</h3>
-                <p>Rs {props.TotalAmount}/-</p>
+                <p>Rs {totalAmount}/-</p>
             </div>
             <div className="BuyTabOptionsTab">
-                <button className="BuyTabBtn" onClick={()=>{
-                    if(Cart.length === 0){
-                        setCart([]);
-                        alert("Cart is empty!");
-                    }
-                    else{
-                        alert("Items ordered.\nThank You!");
-                    }
-                }}>Buy</button>
-                <button className="BuyTabBtn" onClick={()=>{
-                    setCart([]);
-                }}>Remove All</button>
+                <button className="BuyTabBtn" onClick={handleBuyClick}>Buy</button>
+                <button className="BuyTabBtn" onClick={handleRemoveAllClick}>Remove All</button>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default CartPage;

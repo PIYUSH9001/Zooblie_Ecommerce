@@ -8,7 +8,7 @@
     justify-content: center;
     column-gap: 4em;
     grid-template-columns: repeat(2,auto);
-    padding-bottom: 5em;
+    padding-bottom: 10em;
 }
 .BuyTabOptionsTab{
     height:6em;
